@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= simple_form_for(@user, html: {class: "form-horizontal" }) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -10,38 +10,38 @@
       </ul>
     </div>
   <% end %>
-<form class="form-horizontal">
-  <div class="form-group">
-    <form class="form-inline">
-      <div class="form-group">
+
         <div class="field">
-          <%= f.label :Name, class: "col-sm-2 control-label"  %>
+          <%= f.label :Name, class: "col-sm-2 control-label"  %>&nbsp;
           <%= f.text_field :first_name, placeholder: "First Name", class: "form-control"  %>
           <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
         </div>
-      </div>
-    </form>
-    <div class="col-sm-10">
+    
       <div class="field">
-        <%= f.label :username, class: "form-control"  %><br>
-        <%= f.text_field :username, placeholder: "Username" %>
+        <%= f.input :username  , label: 'Username ', error: 'Username is mandatory, please specify one' %>
+      </div>
+  
+     
+      <div class="field">
+        <%= f.input :password, label: 'Password ', error: 'Password is mandatory, please specify one' %>
+      </div>
+      
+       <div class="field">
+        <%= f.input :password_confirmation, label: 'Confirm Password ', error: 'Password is mandatory, please specify one' %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :Country %>&nbsp;
+        <%= f.country_select :country%>
       </div>
       <div class="field">
-        <%= f.label :country %><br>
-        <%= f.text_field :country %>
-      </div>
-      <div class="field">
-        <%= f.label :city %><br>
+        <%= f.label :city %>&nbsp;
         <%= f.text_field :city %>
       </div>
       <div class="field">
-        <%= f.label :dob %><br>
-        <%= f.date_select :dob %>
+        <%= f.input :dob, as: :date, label: 'D.O.B' %>
       </div>
-      <div class="field">
-        <%= f.label :temperament %><br>
-        <%= f.text_field :ttemperament %>
-      </div>
+     
       <div class="actions">
         <%= f.submit %>
       </div>
